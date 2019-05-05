@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 
-from pv_plotter import PvPlotter
+from q_plotter import QPlotter
 
 import changsung
 
 
 if __name__ == '__main__':
-  plotter   = PvPlotter()
+  plotter   = QPlotter()
 
-  f         = {'kHz': [300, 200, 100, 50, 20, 10, 5]}
+  f         = {'MHz': [10, 5, 2, 1], 'kHz': [500, 300, 200, 100, 50, 20, 10]}
   colors    = ['#6f4527', '#c5341c', '#bc95c4', '#927530', '#313491', '#de4a26', '#f7941e', '#7e287e', '#313491', '#1f99d5', '#22b24c']
   styles    = ['-'] * len(colors)
-  bpk_range = [100, 10000]
-  pv_range  = [  1, 10000]
-  log       = {'b': True, 'p': True}
+  bpk_range = [10, 1000]
+  q_range   = [ 1, 1000]
+  log       = {'b': True, 'q': True}
   size      = (3, 2)
-  units     = {'l': 'cm', 'p': 'mW', 'b': 'G'}
+  units     = {'l': 'cm', 'p': 'mW', 'b': 'mT'}
 
   for material in [ \
     changsung.HS_60u(), changsung.HS_75u(), changsung.HS_90u(), \
@@ -41,4 +41,4 @@ if __name__ == '__main__':
     changsung.MegaFlux_75u(), changsung.MegaFlux_90u(), \
   ]:
     print(material.__class__.__name__)
-    plotter.plot_one_mat(material, f, colors, styles, bpk_range, pv_range, log, size, units)
+    plotter.plot_one_mat(material, f, colors, styles, bpk_range, q_range, log, size, units)
